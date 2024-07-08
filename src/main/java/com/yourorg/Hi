@@ -1,0 +1,16 @@
+package com.youorg;
+
+public class Hi{
+private static final Hi hi;
+public static Hi instance(){
+if(hi == null)
+{
+hi = new Hi();
+}
+}
+public String addNames(String s4 ,String s1 , String s2, String s3){
+
+String s = "name";
+return s;
+}
+}
