@@ -27,14 +27,14 @@ class AssertEqualsToAssertThatTest implements RewriteTest {
 
     @Override
     public void defaults(RecipeSpec spec) {
-        spec.recipe(new AssertEqualsToAssertThat())
+        spec.recipe(new ReplaceMethodRecipe())
           .parser(JavaParser.fromJavaVersion()
-            .classpath("junit-jupiter-api"));
+            .classpath(""));
     }
 
     @DocumentExample
     @Test
-    void twoArgument() {
+    void testMthodReplace() {
         rewriteRun(
           //language=java
           java(
@@ -43,7 +43,11 @@ class AssertEqualsToAssertThatTest implements RewriteTest {
               
               class A {
                   void foo() {
-                      Assertions.assertEquals(1, 2);
+                      String s1= "str1";
+                      String s2= "str2";
+                      String s3 = "str3";
+              Hello hello = new Hello();
+              String finalString = hello.printNames(s1 , s2 , s3);
                   }
               }
               """,
@@ -52,34 +56,11 @@ class AssertEqualsToAssertThatTest implements RewriteTest {
               
               class A {
                   void foo() {
-                      Assertions.assertThat(2).isEqualTo(1);
-                  }
-              }
-              """
-          )
-        );
-    }
-
-    @Test
-    void withDescription() {
-        rewriteRun(
-          //language=java
-          java(
-            """
-              import org.junit.jupiter.api.Assertions;
-              
-              class A {
-                  void foo() {
-                      Assertions.assertEquals(1, 2, "one equals two, everyone knows that");
-                  }
-              }
-              """,
-            """
-              import org.assertj.core.api.Assertions;
-              
-              class A {
-                  void foo() {
-                      Assertions.assertThat(2).as("one equals two, everyone knows that").isEqualTo(1);
+                       String s1= "str1";
+                      String s2= "str2";
+                      String s3 = "str3";
+              Hello hello = new Hello();
+              String finalString = Hi.instance().addNames(null, s1 , s2 , s3);
                   }
               }
               """
