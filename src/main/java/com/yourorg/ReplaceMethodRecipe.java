@@ -56,8 +56,10 @@ public class ReplaceMethodRecipe extends Recipe {
                         J.MethodInvocation m = super.visitMethodInvocation(method, ctx);
                         if (method.getSimpleName().equals("printNames") {
                             maybeAddImport("com.youorg.Hi");
-                            return replaceTemplate.apply(getCursor(),method.getCoordinates.replace());
-                            return m;
+                            return replaceTemplate.apply(getCursor(),method.getCoordinates.replace(),method.getArguments(0),method.getArguments(0), method.getArguments(1),method.getArguments(2));
+                            //first argumnet should always be null
+                            //adding this code in line 59 with and without arguments give ArrayIndexOutOfBoundsException
+                          
                         }
                         return m;
                     
